@@ -1,0 +1,71 @@
+{
+	"name": "DestinationDataset_dqy",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabase1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "OrderDate",
+				"type": "nvarchar",
+				"precision": 0,
+				"scale": 0
+			},
+			{
+				"name": "OrderID",
+				"type": "nvarchar",
+				"precision": 0,
+				"scale": 0
+			},
+			{
+				"name": "CustomerID",
+				"type": "nvarchar",
+				"precision": 0,
+				"scale": 0
+			},
+			{
+				"name": "CustomerName",
+				"type": "nvarchar",
+				"precision": 0,
+				"scale": 0
+			},
+			{
+				"name": "OrderLineID",
+				"type": "nvarchar",
+				"precision": 0,
+				"scale": 0
+			},
+			{
+				"name": "StockItemID",
+				"type": "nvarchar",
+				"precision": 0,
+				"scale": 0
+			},
+			{
+				"name": "StockItemName",
+				"type": "nvarchar",
+				"precision": 0,
+				"scale": 0
+			},
+			{
+				"name": "Quantity",
+				"type": "nvarchar",
+				"precision": 0,
+				"scale": 0
+			},
+			{
+				"name": "UnitPrice",
+				"type": "nvarchar",
+				"precision": 0,
+				"scale": 0
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "AllFiles"
+		}
+	}
+}
