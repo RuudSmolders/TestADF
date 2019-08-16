@@ -37,7 +37,8 @@
 						}
 					},
 					"sink": {
-						"type": "AzureSqlSink"
+						"type": "AzureSqlSink",
+						"preCopyScript": "truncate table AllFiles"
 					},
 					"enableStaging": false,
 					"translator": {
