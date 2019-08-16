@@ -1,0 +1,42 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "ADFactoryRuud"
+		},
+		"AzureBlobStorage1_connectionString": {
+			"value": ""
+		},
+		"AzureDataLakeAnalytics1_servicePrincipalKey": {
+			"value": ""
+		},
+		"AzureSqlDatabase1_connectionString": {
+			"value": ""
+		},
+		"AzureDataLakeAnalytics1_properties_typeProperties_accountName": {
+			"value": "ruuddatalake"
+		},
+		"AzureDataLakeAnalytics1_properties_typeProperties_servicePrincipalId": {
+			"value": "b15721eb-cdb3-484b-b1aa-67a071da8486"
+		},
+		"AzureDataLakeAnalytics1_properties_typeProperties_tenant": {
+			"value": "10397e7d-6f38-44ed-8e9e-fcf9187c1abd"
+		},
+		"AzureDataLakeAnalytics1_properties_typeProperties_subscriptionId": {
+			"value": "effe9efe-8d07-48b7-bc1c-12d198841a89"
+		},
+		"AzureDataLakeAnalytics1_properties_typeProperties_resourceGroupName": {
+			"value": "Test"
+		},
+		"AzureKeyVault1_properties_typeProperties_baseUrl": {
+			"value": "https://Ruud.vault.azure.net/"
+		},
+		"containerUri": {
+			"value": ""
+		},
+		"containerSasToken": {
+			"value": ""
+		}
+	}
+}

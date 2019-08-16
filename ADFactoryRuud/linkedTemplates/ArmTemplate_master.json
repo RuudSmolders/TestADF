@@ -1,0 +1,105 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory Name",
+			"defaultValue": "ADFactoryRuud"
+		},
+		"AzureBlobStorage1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage1'"
+		},
+		"AzureDataLakeAnalytics1_servicePrincipalKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'servicePrincipalKey' of 'AzureDataLakeAnalytics1'"
+		},
+		"AzureSqlDatabase1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureSqlDatabase1'"
+		},
+		"AzureDataLakeAnalytics1_properties_typeProperties_accountName": {
+			"type": "string",
+			"defaultValue": "ruuddatalake"
+		},
+		"AzureDataLakeAnalytics1_properties_typeProperties_servicePrincipalId": {
+			"type": "string",
+			"defaultValue": "b15721eb-cdb3-484b-b1aa-67a071da8486"
+		},
+		"AzureDataLakeAnalytics1_properties_typeProperties_tenant": {
+			"type": "string",
+			"defaultValue": "10397e7d-6f38-44ed-8e9e-fcf9187c1abd"
+		},
+		"AzureDataLakeAnalytics1_properties_typeProperties_subscriptionId": {
+			"type": "string",
+			"defaultValue": "effe9efe-8d07-48b7-bc1c-12d198841a89"
+		},
+		"AzureDataLakeAnalytics1_properties_typeProperties_resourceGroupName": {
+			"type": "string",
+			"defaultValue": "Test"
+		},
+		"AzureKeyVault1_properties_typeProperties_baseUrl": {
+			"type": "string",
+			"defaultValue": "https://Ruud.vault.azure.net/"
+		},
+		"containerUri": {
+			"type": "string",
+			"metadata": "URI to storage account containing linked ARM templates"
+		},
+		"containerSasToken": {
+			"type": "string",
+			"metadata": "Sas Token to storage account containing linked ARM templates"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "ArmTemplate_0",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_0.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"AzureBlobStorage1_connectionString": {
+						"value": "[parameters('AzureBlobStorage1_connectionString')]"
+					},
+					"AzureDataLakeAnalytics1_servicePrincipalKey": {
+						"value": "[parameters('AzureDataLakeAnalytics1_servicePrincipalKey')]"
+					},
+					"AzureSqlDatabase1_connectionString": {
+						"value": "[parameters('AzureSqlDatabase1_connectionString')]"
+					},
+					"AzureDataLakeAnalytics1_properties_typeProperties_accountName": {
+						"value": "[parameters('AzureDataLakeAnalytics1_properties_typeProperties_accountName')]"
+					},
+					"AzureDataLakeAnalytics1_properties_typeProperties_servicePrincipalId": {
+						"value": "[parameters('AzureDataLakeAnalytics1_properties_typeProperties_servicePrincipalId')]"
+					},
+					"AzureDataLakeAnalytics1_properties_typeProperties_tenant": {
+						"value": "[parameters('AzureDataLakeAnalytics1_properties_typeProperties_tenant')]"
+					},
+					"AzureDataLakeAnalytics1_properties_typeProperties_subscriptionId": {
+						"value": "[parameters('AzureDataLakeAnalytics1_properties_typeProperties_subscriptionId')]"
+					},
+					"AzureDataLakeAnalytics1_properties_typeProperties_resourceGroupName": {
+						"value": "[parameters('AzureDataLakeAnalytics1_properties_typeProperties_resourceGroupName')]"
+					},
+					"AzureKeyVault1_properties_typeProperties_baseUrl": {
+						"value": "[parameters('AzureKeyVault1_properties_typeProperties_baseUrl')]"
+					}
+				}
+			},
+			"dependsOn": []
+		}
+	]
+}
