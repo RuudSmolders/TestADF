@@ -171,6 +171,12 @@
 				}
 			}
 		],
+		"parameters": {
+			"@sales_file": {
+				"type": "object",
+				"defaultValue": "ImportCSV"
+			}
+		},
 		"annotations": []
 	}
 }
