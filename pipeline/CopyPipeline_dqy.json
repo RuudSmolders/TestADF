@@ -1,0 +1,156 @@
+{
+	"name": "CopyPipeline_dqy",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy_dqy",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [
+					{
+						"name": "Source",
+						"value": "adf-data/2016/"
+					},
+					{
+						"name": "Destination",
+						"value": "dbo.AllFiles"
+					}
+				],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"wildcardFileName": "*.*"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings",
+							"skipLineCount": 0
+						}
+					},
+					"sink": {
+						"type": "AzureSqlSink",
+						"preCopyScript": "truncate table AllFiles"
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "OrderDate",
+									"type": "String"
+								},
+								"sink": {
+									"name": "OrderDate",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "OrderID",
+									"type": "String"
+								},
+								"sink": {
+									"name": "OrderID",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "CustomerID",
+									"type": "String"
+								},
+								"sink": {
+									"name": "CustomerID",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "CustomerName",
+									"type": "String"
+								},
+								"sink": {
+									"name": "CustomerName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "OrderLineID",
+									"type": "String"
+								},
+								"sink": {
+									"name": "OrderLineID",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "StockItemID",
+									"type": "String"
+								},
+								"sink": {
+									"name": "StockItemID",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "StockItemName",
+									"type": "String"
+								},
+								"sink": {
+									"name": "StockItemName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Quantity",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Quantity",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "UnitPrice",
+									"type": "String"
+								},
+								"sink": {
+									"name": "UnitPrice",
+									"type": "String"
+								}
+							}
+						]
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "SourceDataset_dqy",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DestinationDataset_dqy",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"annotations": []
+	}
+}

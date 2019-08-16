@@ -1,0 +1,60 @@
+{
+	"name": "SourceDataset_dqy",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"folderPath": "2016",
+				"container": "adf-data"
+			},
+			"columnDelimiter": "\t",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "OrderDate",
+				"type": "String"
+			},
+			{
+				"name": "OrderID",
+				"type": "String"
+			},
+			{
+				"name": "CustomerID",
+				"type": "String"
+			},
+			{
+				"name": "CustomerName",
+				"type": "String"
+			},
+			{
+				"name": "OrderLineID",
+				"type": "String"
+			},
+			{
+				"name": "StockItemID",
+				"type": "String"
+			},
+			{
+				"name": "StockItemName",
+				"type": "String"
+			},
+			{
+				"name": "Quantity",
+				"type": "String"
+			},
+			{
+				"name": "UnitPrice",
+				"type": "String"
+			}
+		]
+	}
+}
