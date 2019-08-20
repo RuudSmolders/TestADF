@@ -75,7 +75,7 @@
 								},
 								"parameters": {
 									"sales_file": {
-										"value": "@activity('GetSubFolders').output.childName",
+										"value": "@activity('GetSubFolders').output.childItems",
 										"type": "Expression"
 									}
 								}
