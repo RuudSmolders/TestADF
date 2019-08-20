@@ -20,7 +20,6 @@
 						"type": "DatasetReference"
 					},
 					"fieldList": [
-						"itemName",
 						"childItems"
 					],
 					"storeSettings": {
@@ -30,6 +29,55 @@
 					"formatSettings": {
 						"type": "DelimitedTextReadSettings"
 					}
+				}
+			},
+			{
+				"name": "ForEach1",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "GetSubFolders",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('GetSubFolders').output.childItems",
+						"type": "Expression"
+					},
+					"isSequential": true,
+					"activities": [
+						{
+							"name": "U-SQL1",
+							"type": "DataLakeAnalyticsU-SQL",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"scriptPath": "u-sql1/Unnamed",
+								"scriptLinkedService": {
+									"referenceName": "AzureBlobStorage1",
+									"type": "LinkedServiceReference"
+								},
+								"parameters": {
+									"sales_file": "@item().name"
+								}
+							},
+							"linkedServiceName": {
+								"referenceName": "AzureDataLakeAnalytics1",
+								"type": "LinkedServiceReference"
+							}
+						}
+					]
 				}
 			}
 		],
