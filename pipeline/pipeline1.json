@@ -51,8 +51,8 @@
 					"isSequential": true,
 					"activities": [
 						{
-							"name": "U-SQL1",
-							"type": "DataLakeAnalyticsU-SQL",
+							"name": "Lookup1",
+							"type": "Lookup",
 							"dependsOn": [],
 							"policy": {
 								"timeout": "7.00:00:00",
@@ -61,28 +61,29 @@
 								"secureOutput": false,
 								"secureInput": false
 							},
-							"userProperties": [
-								{
-									"name": "@sales_file",
-									"value": "@item().name"
-								}
-							],
+							"userProperties": [],
 							"typeProperties": {
-								"scriptPath": "u-sql1/Unnamed",
-								"scriptLinkedService": {
-									"referenceName": "AzureBlobStorage1",
-									"type": "LinkedServiceReference"
-								},
-								"parameters": {
-									"sales_file": {
-										"value": "@activity('GetSubFolders').output.childItems",
-										"type": "Expression"
+								"source": {
+									"type": "DelimitedTextSource",
+									"storeSettings": {
+										"type": "AzureBlobStorageReadSettings",
+										"recursive": false,
+										"wildcardFolderPath": "01",
+										"wildcardFileName": {
+											"value": "@{item().name}",
+											"type": "Expression"
+										},
+										"enablePartitionDiscovery": false
+									},
+									"formatSettings": {
+										"type": "DelimitedTextReadSettings"
 									}
-								}
-							},
-							"linkedServiceName": {
-								"referenceName": "AzureDataLakeAnalytics1",
-								"type": "LinkedServiceReference"
+								},
+								"dataset": {
+									"referenceName": "DS_CSVAll",
+									"type": "DatasetReference"
+								},
+								"firstRowOnly": false
 							}
 						}
 					]
