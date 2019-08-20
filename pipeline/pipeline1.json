@@ -7,7 +7,7 @@
 				"type": "DataLakeAnalyticsU-SQL",
 				"dependsOn": [
 					{
-						"activity": "Copy Data1",
+						"activity": "Get Metadata1",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -20,7 +20,12 @@
 					"secureOutput": false,
 					"secureInput": false
 				},
-				"userProperties": [],
+				"userProperties": [
+					{
+						"name": "sales_file",
+						"value": "@metadata1().ItemName"
+					}
+				],
 				"typeProperties": {
 					"scriptPath": "u-sql1/Unnamed",
 					"scriptLinkedService": {
@@ -34,8 +39,8 @@
 				}
 			},
 			{
-				"name": "Copy Data1",
-				"type": "Copy",
+				"name": "Get Metadata1",
+				"type": "GetMetadata",
 				"dependsOn": [],
 				"policy": {
 					"timeout": "7.00:00:00",
@@ -44,35 +49,29 @@
 					"secureOutput": false,
 					"secureInput": false
 				},
-				"userProperties": [],
-				"typeProperties": {
-					"source": {
-						"type": "DelimitedTextSource",
-						"storeSettings": {
-							"type": "AzureBlobStorageReadSettings",
-							"recursive": true
-						},
-						"formatSettings": {
-							"type": "DelimitedTextReadSettings"
-						}
-					},
-					"sink": {
-						"type": "AzureSqlSink"
-					},
-					"enableStaging": false
-				},
-				"inputs": [
+				"userProperties": [
 					{
-						"referenceName": "ImportCSV",
-						"type": "DatasetReference"
+						"name": "FileName",
+						"value": ""
 					}
 				],
-				"outputs": [
-					{
-						"referenceName": "DestinationDataset_dqy",
+				"typeProperties": {
+					"dataset": {
+						"referenceName": "DS_CSVlogs",
 						"type": "DatasetReference"
+					},
+					"fieldList": [
+						"childItems",
+						"itemName"
+					],
+					"storeSettings": {
+						"type": "AzureBlobStorageReadSettings",
+						"recursive": true
+					},
+					"formatSettings": {
+						"type": "DelimitedTextReadSettings"
 					}
-				]
+				}
 			}
 		],
 		"annotations": []
