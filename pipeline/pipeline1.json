@@ -61,7 +61,12 @@
 								"secureOutput": false,
 								"secureInput": false
 							},
-							"userProperties": [],
+							"userProperties": [
+								{
+									"name": "@sales_file",
+									"value": "@item().name"
+								}
+							],
 							"typeProperties": {
 								"scriptPath": "u-sql1/Unnamed",
 								"scriptLinkedService": {
@@ -69,7 +74,10 @@
 									"type": "LinkedServiceReference"
 								},
 								"parameters": {
-									"sales_file": "@item().name"
+									"sales_file": {
+										"value": "@item().name",
+										"type": "Expression"
+									}
 								}
 							},
 							"linkedServiceName": {
