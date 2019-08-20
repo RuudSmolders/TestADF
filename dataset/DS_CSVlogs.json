@@ -7,8 +7,7 @@
 		},
 		"parameters": {
 			"SubFolderName": {
-				"type": "string",
-				"defaultValue": "@item."
+				"type": "string"
 			},
 			"FileName": {
 				"type": "string"
