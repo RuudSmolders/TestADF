@@ -45,11 +45,10 @@
 				"userProperties": [],
 				"typeProperties": {
 					"dataset": {
-						"referenceName": "DS_CSVlogs",
+						"referenceName": "DS_DetermineSubFolders",
 						"type": "DatasetReference"
 					},
 					"fieldList": [
-						"childItems",
 						"itemName"
 					],
 					"storeSettings": {
