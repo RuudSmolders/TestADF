@@ -23,7 +23,7 @@
 				"userProperties": [
 					{
 						"name": "sales_file",
-						"value": "@item().FileName"
+						"value": "@Activity('GetSubFolders').Output"
 					}
 				],
 				"typeProperties": {
