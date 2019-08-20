@@ -1,0 +1,14 @@
+{
+	"name": "AzureDataLakeStore1",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "AzureDataLakeStore",
+		"typeProperties": {
+			"dataLakeStoreUri": "https://ruuddatalakeadls.azuredatalakestore.net/webhdfs/v1",
+			"tenant": "10397e7d-6f38-44ed-8e9e-fcf9187c1abd",
+			"subscriptionId": "effe9efe-8d07-48b7-bc1c-12d198841a89",
+			"resourceGroupName": "Test"
+		}
+	}
+}
