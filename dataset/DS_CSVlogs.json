@@ -5,13 +5,27 @@
 			"referenceName": "AzureBlobStorage1",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"SubFolderName": {
+				"type": "string"
+			},
+			"FileName": {
+				"type": "string"
+			}
+		},
 		"annotations": [],
 		"type": "DelimitedText",
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"fileName": "@item().FileName",
-				"folderPath": "2016/",
+				"fileName": {
+					"value": "@dataset().FileName",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "@concat('2016\\',dataset().SubFolderName,'\\')",
+					"type": "Expression"
+				},
 				"container": "adf-data"
 			},
 			"columnDelimiter": "\t",
