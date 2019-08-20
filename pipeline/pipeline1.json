@@ -106,7 +106,7 @@
 								},
 								"parameters": {
 									"sales_file": {
-										"value": "adf-data/2016/01/01.txt",
+										"value": "2016/01/01.txt",
 										"type": "Expression"
 									}
 								}
