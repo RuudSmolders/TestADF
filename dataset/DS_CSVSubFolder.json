@@ -1,17 +1,25 @@
 {
-	"name": "DS_DetermineSubFolders",
+	"name": "DS_CSVSubFolder",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "AzureBlobStorage1",
 			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"Input_SubFolderName": {
+				"type": "string"
+			}
 		},
 		"annotations": [],
 		"type": "DelimitedText",
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"folderPath": "2016",
-				"container": "adf-data"
+				"folderPath": {
+					"value": "@dataset().Input_SubFolderName",
+					"type": "Expression"
+				},
+				"container": "adf-data/2016"
 			},
 			"columnDelimiter": "\t",
 			"escapeChar": "\\",
