@@ -62,8 +62,8 @@
 							}
 						},
 						{
-							"name": "GetFileList",
-							"type": "GetMetadata",
+							"name": "DataLakeAnalyticsU-SQL1",
+							"type": "DataLakeAnalyticsU-SQL",
 							"dependsOn": [
 								{
 									"activity": "set SubFolder for FileList",
@@ -81,54 +81,29 @@
 							},
 							"userProperties": [],
 							"typeProperties": {
-								"dataset": {
-									"referenceName": "DS_CSVSubFolder",
-									"type": "DatasetReference",
-									"parameters": {
-										"Input_SubFolderName": {
-											"value": "@variables('SubFolder')",
-											"type": "Expression"
-										}
-									}
+								"scriptPath": "2016/sales.usql",
+								"scriptLinkedService": {
+									"referenceName": "AzureDataLakeStore1",
+									"type": "LinkedServiceReference"
 								},
-								"fieldList": [
-									"itemName",
-									"childItems",
-									"itemType"
-								],
-								"storeSettings": {
-									"type": "AzureBlobStorageReadSettings",
-									"recursive": true
-								},
-								"formatSettings": {
-									"type": "DelimitedTextReadSettings"
-								}
-							}
-						},
-						{
-							"name": "Execute Pipeline1",
-							"type": "ExecutePipeline",
-							"dependsOn": [
-								{
-									"activity": "GetFileList",
-									"dependencyConditions": [
-										"Succeeded"
-									]
-								}
-							],
-							"userProperties": [],
-							"typeProperties": {
-								"pipeline": {
-									"referenceName": "sub_ExecUSQLScript",
-									"type": "PipelineReference"
-								},
-								"waitOnCompletion": true,
 								"parameters": {
-									"input_FolderName": {
-										"value": "@variables('SubFolder')",
+									"sales_file": {
+										"value": "@concat('2016/',variables('SubFolder'),'{*}.txt')",
+										"type": "Expression"
+									},
+									"lineitems_file": {
+										"value": "@concat('2016/output/lines/',variables('SubFolder'),'.txt')",
+										"type": "Expression"
+									},
+									"orders_file": {
+										"value": "@concat('2016/output/sales/',variables('SubFolder'),'.txt')",
 										"type": "Expression"
 									}
 								}
+							},
+							"linkedServiceName": {
+								"referenceName": "AzureDataLakeAnalytics1",
+								"type": "LinkedServiceReference"
 							}
 						}
 					]
