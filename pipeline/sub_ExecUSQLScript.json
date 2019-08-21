@@ -3,8 +3,8 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "DataLakeAnalyticsU-SQL1",
-				"type": "DataLakeAnalyticsU-SQL",
+				"name": "Get Metadata1",
+				"type": "GetMetadata",
 				"dependsOn": [],
 				"policy": {
 					"timeout": "7.00:00:00",
@@ -15,40 +15,33 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"scriptPath": "2016/sales.usql",
-					"scriptLinkedService": {
-						"referenceName": "AzureDataLakeStore1",
-						"type": "LinkedServiceReference"
-					},
-					"parameters": {
-						"sales_file": {
-							"value": "@concat('2016/',variables('SubFolder'),'/{*}.txt')",
-							"type": "Expression"
-						},
-						"lineitems_file": {
-							"value": "@concat('2016/output/',variables('SubFolder'),'/line_items/{*}.txt')",
-							"type": "Expression"
-						},
-						"orders_file": {
-							"value": "@concat('2016/output/',variables('SubFolder'),'/orders_items/{*}.txt')",
-							"type": "Expression"
+					"dataset": {
+						"referenceName": "DS_CSVSubFolder",
+						"type": "DatasetReference",
+						"parameters": {
+							"Input_SubFolderName": {
+								"value": "@pipeline().parameters.input_SubFolderName",
+								"type": "Expression"
+							}
 						}
+					},
+					"fieldList": [
+						"itemName",
+						"childItems"
+					],
+					"storeSettings": {
+						"type": "AzureBlobStorageReadSettings",
+						"recursive": true
+					},
+					"formatSettings": {
+						"type": "DelimitedTextReadSettings"
 					}
-				},
-				"linkedServiceName": {
-					"referenceName": "AzureDataLakeAnalytics1",
-					"type": "LinkedServiceReference"
 				}
 			}
 		],
 		"parameters": {
-			"input_FolderName": {
+			"input_SubFolderName": {
 				"type": "string"
-			}
-		},
-		"variables": {
-			"input_FileName": {
-				"type": "String"
 			}
 		},
 		"annotations": []
