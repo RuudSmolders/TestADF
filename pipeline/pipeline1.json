@@ -33,7 +33,7 @@
 				}
 			},
 			{
-				"name": "ForEach1",
+				"name": "Loop_Folders",
 				"type": "ForEach",
 				"dependsOn": [
 					{
@@ -85,11 +85,16 @@
 									"referenceName": "DS_CSVSubFolder",
 									"type": "DatasetReference",
 									"parameters": {
-										"Input_SubFolderName": "@item().name"
+										"Input_SubFolderName": {
+											"value": "@variables('SubFolder')",
+											"type": "Expression"
+										}
 									}
 								},
 								"fieldList": [
-									"childItems"
+									"itemName",
+									"childItems",
+									"itemType"
 								],
 								"storeSettings": {
 									"type": "AzureBlobStorageReadSettings",
@@ -127,11 +132,14 @@
 								},
 								"parameters": {
 									"sales_file": {
-										"value": "@concat('2016/'\n,activity('GetSubFolders').output.itemName\n,'/'\n,activity('GetFileList').output.childItems\n,'.txt')",
+										"value": "@concat('2016/'\n,activity('GetSubFolders').output.itemName\n,'/{*}.txt')",
 										"type": "Expression"
 									},
-									"lineitems_file": "@concat('2016/output/linteitems_file/'\n,activity('GetSubFolders').output.itemName\n,'/'\n,activity('GetFileList').output.childItems\n,'.txt')",
-									"orders_file": "@concat('2016/output/order_file/'\n,activity('GetSubFolders').output.itemName\n,'/'\n,activity('GetFileList').output.childItems\n,'.txt')"
+									"lineitems_file": {
+										"value": "@concat('2016/output/lineitems/output.txt')",
+										"type": "Expression"
+									},
+									"orders_file": "@concat('2016/output/sales/output.txt')"
 								}
 							},
 							"linkedServiceName": {
