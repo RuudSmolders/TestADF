@@ -132,11 +132,11 @@
 								},
 								"parameters": {
 									"sales_file": {
-										"value": "@concat('2016/'\n,activity('GetSubFolders').output.itemName\n,'/{*}.txt')",
+										"value": "@concat(activity('GetSubFolders').output.itemName\n,'/{*}.txt')",
 										"type": "Expression"
 									},
 									"lineitems_file": {
-										"value": "@concat('2016/output/lineitems/output.txt')",
+										"value": "@concat('2016/output/lineitems/{*}_output.txt')",
 										"type": "Expression"
 									},
 									"orders_file": "@concat('2016/output/sales/output.txt')"
