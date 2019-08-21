@@ -106,8 +106,8 @@
 							}
 						},
 						{
-							"name": "DataLakeAnalyticsU-SQL1",
-							"type": "DataLakeAnalyticsU-SQL",
+							"name": "Execute Pipeline1",
+							"type": "ExecutePipeline",
 							"dependsOn": [
 								{
 									"activity": "GetFileList",
@@ -116,35 +116,19 @@
 									]
 								}
 							],
-							"policy": {
-								"timeout": "7.00:00:00",
-								"retry": 0,
-								"retryIntervalInSeconds": 30,
-								"secureOutput": false,
-								"secureInput": false
-							},
 							"userProperties": [],
 							"typeProperties": {
-								"scriptPath": "2016/sales.usql",
-								"scriptLinkedService": {
-									"referenceName": "AzureDataLakeStore1",
-									"type": "LinkedServiceReference"
+								"pipeline": {
+									"referenceName": "sub_ExecUSQLScript",
+									"type": "PipelineReference"
 								},
+								"waitOnCompletion": true,
 								"parameters": {
-									"sales_file": {
-										"value": "@concat(activity('GetSubFolders').output.itemName\n,'/{*}.txt')",
+									"input_FolderName": {
+										"value": "@variables('SubFolder')",
 										"type": "Expression"
-									},
-									"lineitems_file": {
-										"value": "@concat('2016/output/lineitems/{*}_output.txt')",
-										"type": "Expression"
-									},
-									"orders_file": "@concat('2016/output/sales/output.txt')"
+									}
 								}
-							},
-							"linkedServiceName": {
-								"referenceName": "AzureDataLakeAnalytics1",
-								"type": "LinkedServiceReference"
 							}
 						}
 					]

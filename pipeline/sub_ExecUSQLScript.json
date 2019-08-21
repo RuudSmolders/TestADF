@@ -22,51 +22,30 @@
 					},
 					"parameters": {
 						"sales_file": {
-							"value": "@concat('2016/',pipeline().",
+							"value": "@concat('2016/',variables('SubFolder'),'/{*}.txt')",
 							"type": "Expression"
 						},
-						"lineitems_file": "@concat('2016/output/linteitems_file/'\n,activity('GetSubFolders').output.itemName\n,'/'\n,activity('GetFileList').output.childItems.name\n,'.txt')"
+						"lineitems_file": {
+							"value": "@concat('2016/output/',variables('SubFolder'),'/line_items/{*}.txt')",
+							"type": "Expression"
+						},
+						"orders_file": {
+							"value": "@concat('2016/output/',variables('SubFolder'),'/orders_items/{*}.txt')",
+							"type": "Expression"
+						}
 					}
 				},
 				"linkedServiceName": {
 					"referenceName": "AzureDataLakeAnalytics1",
 					"type": "LinkedServiceReference"
 				}
-			},
-			{
-				"name": "Get Metadata1",
-				"type": "GetMetadata",
-				"dependsOn": [],
-				"policy": {
-					"timeout": "7.00:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"dataset": {
-						"referenceName": "DS_CSVSubFolder",
-						"type": "DatasetReference",
-						"parameters": {
-							"Input_SubFolderName": {
-								"value": "@variables('input_FileName')",
-								"type": "Expression"
-							}
-						}
-					},
-					"fieldList": [],
-					"storeSettings": {
-						"type": "AzureBlobStorageReadSettings",
-						"recursive": true
-					},
-					"formatSettings": {
-						"type": "DelimitedTextReadSettings"
-					}
-				}
 			}
 		],
+		"parameters": {
+			"input_FolderName": {
+				"type": "string"
+			}
+		},
 		"variables": {
 			"input_FileName": {
 				"type": "String"
