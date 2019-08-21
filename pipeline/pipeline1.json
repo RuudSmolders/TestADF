@@ -99,16 +99,18 @@
 							},
 							"userProperties": [],
 							"typeProperties": {
-								"scriptPath": "u-sql1/Unnamed",
+								"scriptPath": "2016/sales.usql",
 								"scriptLinkedService": {
-									"referenceName": "AzureBlobStorage1",
+									"referenceName": "AzureDataLakeStore1",
 									"type": "LinkedServiceReference"
 								},
 								"parameters": {
 									"sales_file": {
 										"value": "2016/01/01.txt",
 										"type": "Expression"
-									}
+									},
+									"lineitems_file": "2016/output/lineitems/01.txt",
+									"orders_file": "2016/output/orders/01.txt"
 								}
 							},
 							"linkedServiceName": {
